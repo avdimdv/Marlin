@@ -455,7 +455,10 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
       #endif
 
       case 110: M110(); break;                                    // M110: Set Current Line Number
-      case 111: M111(); break;                                    // M111: Set debug level
+
+      #if DISABLED(DISABLE_M111)
+        case 111: M111(); break;                                    // M111: Set debug level
+      #endif
 
       #if DISABLED(EMERGENCY_PARSER)
         case 108: M108(); break;                                  // M108: Cancel Waiting
@@ -472,7 +475,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         break;
       #endif
 
-      #if ENABLED(HOST_KEEPALIVE_FEATURE)
+      #if ENABLED(HOST_KEEPALIVE_FEATURE) && DISABLED(DISABLE_M113)
         case 113: M113(); break;                                  // M113: Set Host Keepalive interval
       #endif
 
@@ -486,7 +489,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 191: M191(); break;                                  // M191: Wait for chamber temperature to reach target
       #endif
 
-      #if ENABLED(AUTO_REPORT_TEMPERATURES) && HAS_TEMP_SENSOR
+      #if ENABLED(AUTO_REPORT_TEMPERATURES) && HAS_TEMP_SENSOR && DISABLED(DISABLE_M155)
         case 155: M155(); break;                                  // M155: Set temperature auto-report interval
       #endif
 
@@ -516,17 +519,26 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
       case 82: M82(); break;                                      // M82: Set E axis normal mode (same as other axes)
       case 83: M83(); break;                                      // M83: Set E axis relative mode
       case 18: case 84: M18_M84(); break;                         // M18/M84: Disable Steppers / Set Timeout
-      case 85: M85(); break;                                      // M85: Set inactivity stepper shutdown timeout
+
+      #if DISABLED(DISABLE_M85)
+        case 85: M85(); break;                                      // M85: Set inactivity stepper shutdown timeout
+      #endif
+
       case 92: M92(); break;                                      // M92: Set the steps-per-unit for one or more axes
       case 114: M114(); break;                                    // M114: Report current position
       case 115: M115(); break;                                    // M115: Report capabilities
       case 117: M117(); break;                                    // M117: Set LCD message text, if possible
       case 118: M118(); break;                                    // M118: Display a message in the host console
       case 119: M119(); break;                                    // M119: Report endstop states
-      case 120: M120(); break;                                    // M120: Enable endstops
-      case 121: M121(); break;                                    // M121: Disable endstops
 
-      #if HOTENDS && HAS_LCD_MENU
+      #if DISABLED(DISABLE_M120)
+        case 120: M120(); break;                                    // M120: Enable endstops
+      #endif
+      #if DISABLED(DISABLE_M121)
+        case 121: M121(); break;                                    // M121: Disable endstops
+      #endif
+
+      #if HOTENDS && HAS_LCD_MENU && DISABLED(DISABLE_M145)
         case 145: M145(); break;                                  // M145: Set material heatup parameters
       #endif
 
@@ -563,7 +575,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
       case 204: M204(); break;                                    // M204: Set acceleration
       case 205: M205(); break;                                    // M205: Set advanced settings
 
-      #if HAS_M206_COMMAND
+      #if HAS_M206_COMMAND && DISABLED(DISABLE_M206)
         case 206: M206(); break;                                  // M206: Set home offsets
       #endif
 
@@ -577,7 +589,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         #endif
       #endif
 
-      #if HAS_SOFTWARE_ENDSTOPS
+      #if HAS_SOFTWARE_ENDSTOPS && DISABLED(DISABLE_M211)
         case 211: M211(); break;                                  // M211: Enable, Disable, and/or Report software endstops
       #endif
 
@@ -595,7 +607,9 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 221: M221(); break;                                  // M221: Set Flow Percentage
       #endif
 
-      case 226: M226(); break;                                    // M226: Wait until a pin reaches a state
+      #if DISABLED(DISABLE_M226)
+        case 226: M226(); break;                                    // M226: Wait until a pin reaches a state
+      #endif
 
       #if HAS_SERVOS
         case 280: M280(); break;                                  // M280: Set servo position absolute
@@ -633,7 +647,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 261: M261(); break;                                  // M261: Request data from an i2c slave
       #endif
 
-      #if ENABLED(PREVENT_COLD_EXTRUSION)
+      #if ENABLED(PREVENT_COLD_EXTRUSION) && DISABLED(DISABLE_M302)
         case 302: M302(); break;                                  // M302: Allow cold extrudes (set the minimum extrude temperature)
       #endif
 
@@ -684,7 +698,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 420: M420(); break;                                  // M420: Enable/Disable Bed Leveling
       #endif
 
-      #if HAS_MESH
+      #if HAS_MESH && DISABLED(DISABLE_M421)
         case 421: M421(); break;                                  // M421: Set a Mesh Bed Leveling Z coordinate
       #endif
 
@@ -692,7 +706,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 425: M425(); break;                                  // M425: Tune backlash compensation
       #endif
 
-      #if HAS_M206_COMMAND
+      #if HAS_M206_COMMAND && DISABLED(DISABLE_M428)
         case 428: M428(); break;                                  // M428: Apply current_position to home_offset
       #endif
 
@@ -710,7 +724,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 504: M504(); break;                                  // M504: Validate EEPROM contents
       #endif
 
-      #if ENABLED(SDSUPPORT)
+      #if ENABLED(SDSUPPORT) && DISABLED(DISABLE_M524)
         case 524: M524(); break;                                  // M524: Abort the current SD print job
       #endif
 
@@ -724,7 +738,9 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
 
       #if ENABLED(ADVANCED_PAUSE_FEATURE)
         case 600: M600(); break;                                  // M600: Pause for Filament Change
-        case 603: M603(); break;                                  // M603: Configure Filament Change
+        #if DISABLED(DISABLE_M603)
+          case 603: M603(); break;                                  // M603: Configure Filament Change
+        #endif
       #endif
 
       #if HAS_DUPLICATION_MODE
