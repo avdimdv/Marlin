@@ -896,7 +896,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+#define BLTOUCH
 
 /**
  * Touch-MI Probe by hotends.fr
@@ -953,14 +953,14 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { -43, -6, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
 #define MIN_PROBE_EDGE 10
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 8000
+#define XY_PROBE_SPEED 10000
 
 // Feedrate (mm/m) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
@@ -1199,9 +1199,9 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
+#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
-#define MESH_BED_LEVELING
+//#define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable
@@ -1305,7 +1305,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-#define LCD_BED_LEVELING
+//#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -1350,7 +1350,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing when homing all axes (G28).
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
@@ -1426,6 +1426,7 @@
 //=============================================================================
 
 #if ENABLED(SLIM_1284P)
+  
   #define DISABLE_M111    // M111: Set debug level
   #define DISABLE_M113    // M113: Set Host Keepalive interval
   #define DISABLE_M155    // M155: Set temperature auto-report interval
@@ -1440,7 +1441,13 @@
   #define DISABLE_M302    // M302: Allow cold extrudes (set the minimum extrude temperature)
   //#define DISABLE_M421    // M421: Set a Mesh Bed Leveling Z coordinate
   #define DISABLE_M524    // M524: Abort the current SD print job
-  //#define DISABLE_M603    // M603: Configure Filament Change
+  #define DISABLE_M603    // M603: Configure Filament Change
+
+  #define DISABLE_MENU_VELOCITY
+  #define DISABLE_MENU_ACCELERATION
+  #define DISABLE_MENU_JERK
+  //#define DISABLE_MENU_PREHEAT_SETTINGS
+
 #endif
 
 // @section extras
@@ -1457,7 +1464,7 @@
 #define EEPROM_SETTINGS       // Persistent storage with M500 and M501
 
 #if ENABLED(SLIM_1284P)
-  //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
+  #define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 #endif
 
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
