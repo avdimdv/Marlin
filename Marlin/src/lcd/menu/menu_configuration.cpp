@@ -274,7 +274,7 @@ void menu_advanced_settings();
 
 #endif
 
-#if DISABLED(SLIM_LCD_MENUS)
+#if DISABLED(SLIM_LCD_MENUS) && DISABLED(DISABLE_MENU_PREHEAT_SETTINGS)
 
   void _menu_configuration_preheat_settings(const uint8_t material) {
     #define _MINTEMP_ITEM(N) HEATER_##N##_MINTEMP,
@@ -384,7 +384,7 @@ void menu_configuration() {
     EDIT_ITEM(bool, MSG_OUTAGE_RECOVERY, &recovery.enabled, recovery.changed);
   #endif
 
-  #if DISABLED(SLIM_LCD_MENUS)
+  #if DISABLED(SLIM_LCD_MENUS) && DISABLED(DISABLE_MENU_PREHEAT_SETTINGS)
     // Preheat configurations
     SUBMENU(MSG_PREHEAT_1_SETTINGS, menu_preheat_material1_settings);
     SUBMENU(MSG_PREHEAT_2_SETTINGS, menu_preheat_material2_settings);
