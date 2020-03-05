@@ -492,10 +492,16 @@
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
+
+  // My Creality Ender-5 at 245
+  #define DEFAULT_Kp 24.23
+  #define DEFAULT_Ki 2.10
+  #define DEFAULT_Kd 69.96
+
   // Creality Ender-5
-  #define DEFAULT_Kp 21.50
-  #define DEFAULT_Ki 1.70
-  #define DEFAULT_Kd 67.82
+  //#define DEFAULT_Kp 21.50
+  //#define DEFAULT_Ki 1.70
+  //#define DEFAULT_Kd 67.82
 
   // Ultimaker
   //#define DEFAULT_Kp 22.2
@@ -1464,7 +1470,7 @@
 #define EEPROM_SETTINGS       // Persistent storage with M500 and M501
 
 #if ENABLED(SLIM_1284P)
-  #define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
+  //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 #endif
 
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
