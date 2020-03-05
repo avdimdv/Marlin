@@ -1316,7 +1316,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-//#define LCD_BED_LEVELING
+#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -1475,7 +1475,7 @@
 #define EEPROM_SETTINGS       // Persistent storage with M500 and M501
 
 #if ENABLED(SLIM_1284P)
-  //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
+  #define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 #endif
 
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
