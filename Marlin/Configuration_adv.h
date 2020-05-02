@@ -1484,7 +1484,7 @@
   //#define BABYSTEP_WITHOUT_HOMING
   //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
   #define BABYSTEP_INVERT_Z false           // Change if Z babysteps should go the other way
-  #define BABYSTEP_MULTIPLICATOR_Z  10       // Babysteps are very small. Increase for faster motion.
+  #define BABYSTEP_MULTIPLICATOR_Z  1       // Babysteps are very small. Increase for faster motion.
   #define BABYSTEP_MULTIPLICATOR_XY 1
 
   #define DOUBLECLICK_FOR_Z_BABYSTEPPING    // Double-click on the Status Screen for Z Babystepping.
@@ -1567,7 +1567,7 @@
 #if PROBE_SELECTED && !IS_KINEMATIC
   #define MIN_PROBE_EDGE_LEFT   0 //MIN_PROBE_EDGE
   #define MIN_PROBE_EDGE_RIGHT  0 //MIN_PROBE_EDGE
-  #define MIN_PROBE_EDGE_FRONT  0 //MIN_PROBE_EDGE
+  #define MIN_PROBE_EDGE_FRONT  13 //MIN_PROBE_EDGE
   #define MIN_PROBE_EDGE_BACK   0 //MIN_PROBE_EDGE
 #endif
 
