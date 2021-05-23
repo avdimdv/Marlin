@@ -457,7 +457,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 330
+#define HEATER_0_MAXTEMP 350
 
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
@@ -492,10 +492,10 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-  // My Creality Ender-5 at 245
-  #define DEFAULT_Kp 24.23
-  #define DEFAULT_Ki 2.10
-  #define DEFAULT_Kd 69.96
+  // My Creality Ender-5 at 260
+  #define DEFAULT_Kp 18.96
+  #define DEFAULT_Ki 1.40
+  #define DEFAULT_Kd 64.07
 
   // Creality Ender-5
   //#define DEFAULT_Kp 21.50
@@ -576,7 +576,7 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-//#define PREVENT_COLD_EXTRUSION
+#define PREVENT_COLD_EXTRUSION
 #define EXTRUDE_MINTEMP 170
 
 /**
@@ -749,7 +749,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 98.6 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 385 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -975,7 +975,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { -43.6, -6.2, -1.568 }
+#define NOZZLE_TO_PROBE_OFFSET { -43.6, -6.2, -1.725 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1082,7 +1082,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR true
+#define INVERT_E0_DIR false
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1522,7 +1522,7 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "ABS"
-#define PREHEAT_1_TEMP_HOTEND 245
+#define PREHEAT_1_TEMP_HOTEND 260
 #define PREHEAT_1_TEMP_BED    115
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
